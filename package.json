@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "~12.0.4",
     "@angular/router": "~12.0.4",
     "angular-sortablejs": "^2.7.0",
-    "bootstrap": "^5.0.1",
+    "bootstrap": "^5.1.1",
     "ngx-editor": "^10.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
