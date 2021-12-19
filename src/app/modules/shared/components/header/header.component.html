@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/" routerLinkActive="active">
+        <img [src]="'/assets/images/logo.png'" class="navbar-brand-img shadow"
+          alt="Christ King Institution logo"> Christ King Institutions
+      </a>
+      <button class="navbar-toggler my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <span *ngFor="let menu of navbarData" class="d-flex">
+            <li class="nav-item active w-100" *ngIf="!menu.subMenus" [ngClass]="{'active':currentTab==menu.url}">
+              <a class="nav-link hide-click" [routerLink]="menu.url" routerLinkActive="active" [innerHTML]="menu.name"> </a>
+            </li>
+            <li class="nav-item dropdown" *ngIf="menu.subMenus" [ngClass]="{'active':currentParentTab==menu.url}">
+  
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" [innerHTML]="menu.name"></a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <div *ngFor="let subMenu of menu.subMenus">
+                <a class="dropdown-item hide-click" [routerLink]="subMenu.url" routerLinkActive="active" *ngIf="subMenu.name != 'Login'"
+                  [innerHTML]="subMenu.name"></a>
+                  <a class="dropdown-item hide-click" [href]="subMenu.url" *ngIf="subMenu.name == 'Login'" [innerHTML]="subMenu.name"></a>
+                </div>
+              </div>
+  
+            </li>
+          </span>
+        </ul>
+      </div>
+    </div>
+  </nav>

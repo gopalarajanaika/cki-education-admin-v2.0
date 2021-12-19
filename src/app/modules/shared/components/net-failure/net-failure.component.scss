@@ -1,0 +1,23 @@
+.net-connection-failure>div {
+    width: 30px;
+    margin: auto;
+  }
+  
+  .fa-cloud {
+    font-size: 45px;
+  }
+  
+  .fa-times {
+    position: absolute;
+    z-index: 9;
+    color: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @media (min-width:992px){
+      .net-connection-failure {
+      height: 400px;
+    }
+  }

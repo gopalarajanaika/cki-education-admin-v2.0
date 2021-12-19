@@ -1,0 +1,154 @@
+<h3 class="font-weight-light" *ngIf="formData?.title">{{formData?.title}}</h3>
+<form [formGroup]="form" name="form" *ngIf="formData?.elements?.length > 0" [class]="formData?.class">
+
+    <ng-container *ngFor="let element of formData?.elements; let i = index">
+        <ng-container *ngIf="!element?.hidden">
+            <div class="form-group">
+
+                <label [ngClass]="{'visible':form?.get(element?.addonElement?.name)?.value}"
+                    *ngIf="element?.addonElement" class="me-2">
+                    {{element?.addonElement?.label}}
+                    <span *ngIf="element?.addonElement?.required" class="text-danger">*</span>
+                </label>
+                <label [ngClass]="{'visible':form?.get(element?.name)?.value}">
+                    {{element?.label}}
+                    <span *ngIf="element?.required" class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                    <div class="input-group-prepend" *ngIf="element?.icon">
+                        <span class="btn prepend-text text-primary">
+                            <em class="fa fa-{{element?.icon}}"></em>
+                        </span>
+                    </div>
+
+                    <ng-container *ngIf="['text','email','password','number','date','file'].includes(element?.type)">
+                        <select class="mw-100 extra-small form-control pe-1"
+                            [formControlName]="element?.addonElement?.name" *ngIf="element?.addonElement"
+                            [ngClass]="{'is-invalid': (fc[element?.addonElement?.name]?.invalid && isFormSubmitted) || (fc[element?.addonElement?.name]?.invalid && (fc[element?.addonElement?.name]?.dirty || fc[element?.addonElement?.name]?.touched))}">
+                            <option value="">{{element?.addonElement?.label}}</option>
+                            <option *ngFor="let item of element?.addonElement?.options" [value]="item">
+                                {{item}}
+                            </option>
+                        </select>
+
+                        <ng-container *ngIf="element?.type === 'file'; else noFileCase">
+
+                            <ng-container *ngIf="element?.enableCrop; else noCropCase">
+                                <input [type]="element?.type" class="form-control" [placeholder]="element?.label"
+                                    [formControlName]="element.name"
+                                    [ngClass]="{'is-invalid': (fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))}"
+                                    (click)="resetCroppedImage(element.name)" (change)="setImageToTag($event)"
+                                    data-bs-toggle="modal" data-bs-target="#imageCropModal" [accept]="element.accept">
+                            </ng-container>
+
+                            <ng-template #noCropCase>
+                                <input [type]="element?.type" class="form-control" [placeholder]="element?.label"
+                                    [formControlName]="element.name"
+                                    [ngClass]="{'is-invalid': (fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))}"
+                                    (change)="fileChangeEvent($event, element)" [accept]="element.accept">
+                            </ng-template>
+
+                        </ng-container>
+
+                        <ng-template #noFileCase>
+                            <input [type]="element?.type" class="form-control" [placeholder]="element?.label"
+                                [formControlName]="element.name"
+                                [ngClass]="{'is-invalid': (fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))}">
+                        </ng-template>
+
+                    </ng-container>
+
+
+                    <ng-container *ngIf="element?.type === 'dropdown'">
+
+                        <ng-container *ngIf="element?.searchOption; else noSearchOption">
+                            <input [type]="element?.type" class="form-control" [placeholder]="element?.label"
+                                [attr.list]="'list_'+i" [formControlName]="element.name"
+                                [ngClass]="{'is-invalid': (fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))}">
+
+                            <datalist [id]="'list_'+i">
+                                <ng-container *ngIf="element.optionsKeyValue; else keyValueElse">
+                                    <option *ngFor="let item of element.options" [value]="item.value"
+                                        [class]="item.class">
+                                        <span>{{item.name}}</span>
+                                    </option>
+                                </ng-container>
+                                <ng-template #keyValueElse>
+                                    <option *ngFor="let item of element.options" [value]="item">
+                                        {{item}}
+                                    </option>
+                                </ng-template>
+                            </datalist>
+                        </ng-container>
+
+                        <ng-template #noSearchOption>
+
+                            <select type="text" class="form-control" [formControlName]="element.name"
+                                [ngClass]="{'is-invalid': (fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))}"
+                                (change)="element.eventName ? commonEventEmitter({eventName:element.eventName, parameter : {element: element, value: form?.get(element?.name)?.value}}) : ''">
+                                <option value="">Select {{element.label}}</option>
+                                <ng-container *ngIf="element.optionsKeyValue; else keyValueElse">
+                                    <option *ngFor="let item of element.options" [value]="item.value"
+                                        [class]="item.class">
+                                        <span>{{item.name}}</span>
+                                    </option>
+                                </ng-container>
+                                <ng-template #keyValueElse>
+                                    <option *ngFor="let item of element.options" [value]="item">
+                                        {{item}}
+                                    </option>
+                                </ng-template>
+                            </select>
+
+                        </ng-template>
+                    </ng-container>
+
+
+                    <ng-container *ngIf="element?.type === 'textarea'">
+                        <textarea class="form-control" [placeholder]="element?.label" [formControlName]="element.name"
+                            [ngClass]="{'is-invalid': (fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))}"></textarea>
+                    </ng-container>
+
+
+                    <div class="input-group-append">
+                        <span class="btn bg-transparant" *ngIf="element?.clearBtn && form?.get(element?.name)?.value"
+                            (click)="element?.addonElement ? form?.get(element?.addonElement?.name)?.setValue('') : ''; form?.get(element?.name)?.setValue('')">
+                            <em class="fa fa-times"></em>
+                        </span>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="element?.addonElement">
+                    <div *ngIf="(fc[element?.addonElement?.name]?.invalid && isFormSubmitted) || (fc[element?.addonElement?.name]?.invalid && (fc[element?.addonElement?.name]?.dirty || fc[element?.addonElement?.name]?.touched))"
+                        class="invalid-feedback">
+                        <div *ngIf="fc[element?.addonElement?.name]?.errors?.required">
+                            {{element?.addonElement?.label}} is required.
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div *ngIf="(fc[element.name]?.invalid && isFormSubmitted) || (fc[element.name]?.invalid && (fc[element.name]?.dirty || fc[element.name]?.touched))"
+                    class="invalid-feedback">
+                    <div *ngIf="fc[element.name]?.errors?.required">
+                        {{element.label}} is required.
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <img *ngIf="dpImage" [src]="dpImage" class="img-fluid img-thumbnail mh-150 shadow">
+
+    <div class="d-flex justify-content-end form-group mt-4">
+        <button type="reset" class="btn btn-primary shadow me-2" id="resetBtn" (click)="resetForm()">Reset
+            <em class="fa fa-times-circle"></em></button>
+        <button type="submit" class="btn btn-primary shadow" *ngIf="!formData.updateMode" (click)="submit()">Submit
+            <em class="fa fa-paper-plane"></em>
+        </button>
+        <button type="submit" class="btn btn-primary shadow" *ngIf="formData.updateMode" (click)="submit()">Update
+            <em class="fa fa-paper-plane"></em>
+        </button>
+    </div>
+
+</form>
+<app-image-cropper [configData]="config" (save)="getEditedFile($event)"></app-image-cropper>

@@ -1,0 +1,35 @@
+<div class="alert-container" [@animationTrigger]="commonService.alertMessage.length">
+    <div class="d-flex flex-row table alert-item text-break alert alert-success alert-dismissiblefade shadow" [ngClass]="{'alert-primary':alert.severity=='primary','alert-success':alert.severity=='success','alert-info':alert.severity=='info','alert-warning':alert.severity=='warning','alert-danger':alert.severity=='danger'}"
+        role="alert" *ngFor="let alert of commonService.alertMessage;let i = index" (click)="removeAlert(alert.id)">
+        <div class="table-cell alert-icon me-1">
+            <i *ngIf="alert.severity=='success'" class="fa fa-smile-o"></i>
+            <i *ngIf="alert.severity=='warning'" class="fa fa-meh-o"></i>
+            <i *ngIf="alert.severity=='danger'" class="fa fa-frown-o"></i>
+        </div>
+        <div class="table-cell alert-message flex-grow-1 text-break">
+            <span [innerHTML]="alert.message"></span>
+            <a class="text-primary ms-2 cursor-pointer" data-bs-toggle="modal" data-bs-target="#alertModal" (click)="showMoreErrorDetails(alert.details)" *ngIf="alert.showMore">More..</a>
+        </div>
+        <div>
+            <button class="btn-close small align-self-end" (click)="removeAlert(i)"></button>
+        </div>
+  
+    </div>
+  </div>
+  
+  <div class="modal" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="commonService.alertshowMore">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content shadow-xl" [ngClass]="{'alert-primary':messageDetails.severity=='primary','alert-success':messageDetails.severity=='success','alert-info':messageDetails.severity=='info','alert-warning':messageDetails.severity=='warning','alert-danger':messageDetails.severity=='danger'}">
+            <div class="modal-header border-0 pb-0">
+                <h3 class="modal-title">{{messageDetails.statusText}}</h3>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+  
+            <div class="modal-body pt-0">
+                <p>{{messageDetails.message}}</p>
+            </div>
+        </div>
+    </div>
+  </div>

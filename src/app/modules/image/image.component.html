@@ -1,0 +1,8 @@
+<div class="position-relative h-100">
+    <img [class]="data.class" [src]="data.img" [alt]="data.name" (load)="data.imageLoaded = true">
+    <img class="data.class" *ngIf="!data.img" (load)="data.imageLoaded = true" [src]="'/assets/images/gallery/default.jpg'" [alt]="data.alt">
+    <div class="img-loading d-flex bg-secondary" *ngIf="!data.imageLoaded">
+      <div><i class="fa fa-image"></i></div>
+      <div class="small">Loading...</div>
+    </div>
+  </div>
