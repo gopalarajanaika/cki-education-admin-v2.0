@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { fadeIn } from '../shared/animations/animations';
 import { ApiService } from '../shared/services/api/api.service';
 
 @Component({

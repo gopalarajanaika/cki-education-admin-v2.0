@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../services/common/common.service';
 
 @Component({
   selector: 'app-page-layout',
@@ -8,7 +7,7 @@ import { CommonService } from '../../services/common/common.service';
 })
 export class PageLayoutComponent implements OnInit {
 
-  constructor(public commonService: CommonService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

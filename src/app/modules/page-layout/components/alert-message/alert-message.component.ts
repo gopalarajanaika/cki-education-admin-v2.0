@@ -1,6 +1,6 @@
 import { trigger, style, animate, transition, query, keyframes, stagger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../services/common/common.service';
+import { CommonService } from 'src/app/modules/shared/services/common/common.service';
 
 @Component({
   selector: 'app-alert-message',

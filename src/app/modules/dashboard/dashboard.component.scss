@@ -1,0 +1,14 @@
+.card .fa{
+    transition: all 0.5s;
+    font-size: xxx-large;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-search-dropdown .dropdown-menu{
+    max-height: 400px;
+    overflow: auto;
+}
+.card-body {
+    background-image: linear-gradient(45deg, rgb(25, 98, 146) 0%, rgb(25, 98, 146) 59%,rgb(90, 137, 167) 59%, rgb(88, 137, 169) 65%,rgb(120, 155, 178) 65%, rgb(115, 150, 173) 70%,rgb(150, 177, 194) 70%, rgb(143, 170, 188) 73%,rgb(168, 190, 204) 73%, rgb(174, 195, 208) 78%,rgb(186, 206, 219) 78%, rgb(193, 210, 221) 100%);
+    color: #fff;
+}

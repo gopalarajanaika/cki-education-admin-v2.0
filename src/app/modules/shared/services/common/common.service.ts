@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { fromEvent, merge, Observable, of } from 'rxjs';
+import { fromEvent, merge, Observable, of, Subject } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 declare var $: any;
@@ -9,27 +9,47 @@ declare var $: any;
   providedIn: 'root'
 })
 export class CommonService {
-  apiUrl: string;
+  apiUrl:string;
+  assetUrl:string;
+  apiUrlJsonFile:string;
+  foreignAssetUrl:string;
+  env: string;
+  loading: boolean;
   netConnection: Observable<boolean>;
+  currentUrl: string;
+  bsConfig: any = { dateInputFormat: 'YYYY-MM-DD', customTodayClass: 'custom-today-class',containerClass: 'theme-dark-blue' };
+  
+  currentUser: any = {};
+  logedin: boolean = false;
+
+  // currentUser: any = { "id": "1", "username": "gopalarajanaika@gmail.com", "password": "Admin@123", "firstName": "Gopala", "lastName": "Raja", "type": "super admin", "img": "user_1.jpg?sl=99" };
+  // logedin: boolean = true;
+
   alertMessage: any = [];
   alertMessageLength: number = 0;
   alertshowMore: boolean;
   uniqueId: number = 1;
-  loading: boolean;
-  loadingManual: boolean;
-  bsConfig: any = { dateInputFormat: 'YYYY-MM-DD', customTodayClass: 'custom-today-class', containerClass: 'theme-dark-blue' };
-  production:boolean = false;
-  apiUrlJsonFile: string;
+
+  toggleSideBar: boolean;
+  destroy =  new Subject()
+  production: boolean;
+
   constructor(private title: Title, private meta: Meta) {
     this.apiUrl = environment.apiUrl;
     this.apiUrlJsonFile = environment.apiUrlJsonFile;
+    this.assetUrl = environment.assetUrl;
+    this.foreignAssetUrl = environment.foreignAssetUrl;
     this.production = environment.production;
-    this.netConnection = merge(
-      of(navigator.onLine),
-      fromEvent(window, 'online').pipe(mapTo(true)),
-      fromEvent(window, 'offline').pipe(mapTo(false))
-    )
+    this.env = environment.production ? 'dev' : 'local';
   }
+  callingAlertMessage(severity, message, showMore){
+    const alert = [];
+    alert['message'] = message;
+    alert['severity'] = severity;
+    alert['showMore'] = showMore;
+    this.createAlertMessage(alert);
+  }
+
   createAlertMessage(data: any) {
     setTimeout(() => {
       this.alertMessageLength = 1;
@@ -40,18 +60,31 @@ export class CommonService {
     this.uniqueId++;
   }
 
-  applyEllipseInlineCss() {
-    setTimeout(() => {
-      $(".text-truncate-line").css({ "-webkit-box-orient": "vertical", "-moz-box-orient": "vertical", "box-orient": "vertical" });
-    }, 100);
+
+  orderBy(data: any, field: string) {
+
+    data.sort((a: any, b: any) => {
+      if (a[field] < b[field]) {
+        return -1;
+      } else if (a[field] > b[field]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    return data;
   }
 
-  setMetaTagConentForSeo(title, ...args) {
-    if (title)
-      this.title.setTitle((title[0].toUpperCase() + title.slice(1)).replace(/-/g, ' '));
-    if (args[0]) {
-      let metaContent = args[0].replace(/<[^>]*>/g, "");;
-      this.meta.updateTag({ name: 'description', content: metaContent });
+  clearSubscriptionsAndTimeouts(obj, subscribes, setTimeout){
+    let timeOutIDs = obj["timeOutIDs"] ? JSON.parse(JSON.stringify(obj["timeOutIDs"])) : obj["timeOutIDs"];
+    if(subscribes){
+      obj["destroy"].next();
+      obj["destroy"].complete();
     }
+    if(setTimeout && timeOutIDs && timeOutIDs.length > 0){
+      timeOutIDs.forEach(id => clearTimeout(id));
+    }
+
+    obj["timeOutIDs"] = [];
   }
 }

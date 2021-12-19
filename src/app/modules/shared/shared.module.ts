@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { PageLayoutComponent } from './components/page-layout/page-layout.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NetFailureComponent } from './components/net-failure/net-failure.component';
-import { LoaderComponent } from './components/loader/loader.component';
-import { AlertMessageComponent } from './components/alert-message/alert-message.component';
 import { Interceptor } from './interceptors/http-interceptor';
+import { SearchPipe, CompleteSearchPipe, DatediffPipe, DataFilterPipe,SafeHtmlPipe,SafeUrlPipe } from './pipes/filters.pipe';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    PageLayoutComponent,
     NetFailureComponent,
-    LoaderComponent,
-    AlertMessageComponent
+    SearchPipe,
+    DatediffPipe,
+    DataFilterPipe,
+    CompleteSearchPipe,
+    SafeHtmlPipe,
+    SafeUrlPipe,
   ],
   imports: [
     CommonModule,
@@ -25,10 +22,13 @@ import { Interceptor } from './interceptors/http-interceptor';
     HttpClientModule
   ],
   exports: [
-    HeaderComponent,
-    FooterComponent,
-    PageLayoutComponent,
     NetFailureComponent,
+    SearchPipe,
+    DatediffPipe,
+    DataFilterPipe,
+    CompleteSearchPipe,
+    SafeHtmlPipe,
+    SafeUrlPipe,
   ],
   providers: [
     {

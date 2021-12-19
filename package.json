@@ -20,7 +20,11 @@
     "@angular/router": "~12.0.4",
     "angular-sortablejs": "^2.7.0",
     "bootstrap": "^5.1.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.1",
     "ngx-editor": "^10.0.2",
+    "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

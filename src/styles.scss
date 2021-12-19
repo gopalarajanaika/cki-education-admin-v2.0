@@ -1,1 +1,584 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,700");
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/css/font-awesome.min.css";
+
+:root {
+  --login-input-padding-x: 1.5rem;
+  --login-input-padding-y: 0.75rem;
+  --theme-color: #1a6293;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9375rem;
+  // padding-bottom: 46px;
+  // height: 100vh;
+}
+
+a {
+  color: var(--theme-color);
+}
+
+.extra-small {
+  font-size: 80%;
+  font-weight: 400;
+}
+
+.shadow-xl {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.75) !important;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.floating-label-form .form-group {
+  margin-bottom: 0.3rem;
+}
+
+.floating-label-form .form-group>label {
+  visibility: hidden;
+  font-size: 90%;
+  margin-bottom: 0;
+}
+
+.input-group-form-inside-left .form-control {
+  padding-left: 25px;
+}
+
+.input-group-form-inside-right .form-control {
+  padding-right: 25px;
+}
+
+.input-group-form-inside-both .form-control {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.input-group-form-inside .input-group-prepend {
+  position: absolute !important;
+  top: 0px;
+  height: 100%;
+  z-index: 9 !important;
+  color: #495057;
+}
+
+.input-group-form-inside .input-group-append {
+  position: absolute !important;
+  top: 0px;
+  height: 100%;
+  z-index: 9 !important;
+  color: #495057;
+}
+
+.input-group-form-inside .prepend-text {
+  padding: 0.375rem 0.75rem;
+}
+
+.input-group-form-inside .input-group .btn {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.input-group-form-inside .input-group-append {
+  right: 0px;
+}
+.input-group-form-inside .input-group-append:hover {
+  background: rgba(255, 0, 0, 0.1);
+}
+.input-group-form-inside textarea+.input-group-append {
+  right: 0px;
+}
+
+.input-group-form-inside .input-group-append button {
+  padding: 0.375rem;
+}
+
+.input-group-form-inside .input-group-prepend {
+  left: 0px;
+}
+
+.input-group-form-inside .input-group>.form-control:not(:last-child),
+.input-group-form-inside .input-group>.custom-select:not(:last-child) {
+  border-radius: 0.25rem;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background-image: none;
+}
+
+textarea.form-control {
+  height: 150px;
+}
+
+.custom-file-label {
+  text-align: left;
+  padding-left: 5.7rem;
+}
+.custom-file-label::after {
+  right: auto;
+  left: 0;
+}
+.input-group .input-group-append .fa-times {
+  // color: #495057;
+  color: #dc3545;
+}
+
+.bg-primary {
+  background-color: var(--theme-color) !important;
+}
+
+.bg-dark {
+  background-color: #000 !important;
+}
+
+.bg-disabled {
+  background-color: #e9ecef !important;
+}
+
+.text-primary {
+  color: var(--theme-color) !important;
+}
+
+.btn-primary {
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
+
+.navbar {
+  padding: 0.2rem 0rem;
+}
+
+// .navbar .container-fluid {
+//   padding-right: 15px !important;
+//   padding-left: 15px !important;
+//   // display: block !important;
+// }
+
+.navbar-toggler {
+  padding: 0.1rem 0.3rem;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.shadow-white {
+  box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.15);
+}
+
+.shadow-white-lg {
+  box-shadow: 0rem 1rem 3rem rgba(255, 255, 255, 0.175) !important;
+}
+
+.shadow-white-sm {
+  box-shadow: 0rem 0rem 3rem rgba(255, 255, 255, 0.5) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.plain-text, .plain-text * {
+  display: inline;
+  font-size: inherit;
+  font-weight: normal;
+}
+
+.plain-text br {
+  display: none;
+}
+.plain-text img, .plain-text table, .plain-text video{
+  display: none;
+}
+.w-20 {
+  min-width: 20px !important;
+}
+
+.mw-35 {
+  max-width: 35px !important;
+}
+
+.mw-100 {
+  max-width: 100px !important;
+}
+
+.mw-200 {
+  max-width: 200px !important;
+}
+
+.mw-300 {
+  max-width: 300px !important;
+}
+
+.mw-400 {
+  max-width: 400px !important;
+}
+
+.mw-500 {
+  max-width: 500px !important;
+}
+
+.mw-1000 {
+  max-width: 1000px !important;
+}
+
+.mnw-30 {
+  min-width: 30px !important;
+}
+
+.mnw-50 {
+  min-width: 50px !important;
+}
+
+.mnw-80 {
+  min-width: 80px !important;
+}
+
+.mnw-100 {
+  min-width: 100px !important;
+}
+
+.mh-100 {
+  max-height: 100px !important;
+}
+
+.mh-150 {
+  max-height: 150px !important;
+}
+.mnh-100 {
+  min-height: 100px !important;
+}
+.mx--1 {
+  margin-right: -0.25rem !important;
+  margin-left: -0.25rem !important;
+}
+
+.mx--2 {
+  margin-right: -0.5rem !important;
+  margin-left: -0.5rem !important;
+}
+
+.mx--3 {
+  margin-left: -1rem !important;
+  margin-left: -1rem !important;
+}
+
+.mx--4 {
+  margin-left: -1.5rem !important;
+  margin-left: -1.5rem !important;
+}
+
+.table-default td,
+.table-default th {
+  padding: 2px 6px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-light {
+  // border-color: #c9c9c9 !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.btn-unstyled {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.table th,
+.table td {
+  padding: 0.5rem 0.75rem;
+}
+
+:disabled {
+  opacity: 0.5;
+}
+
+.fa-20 {
+  font-size: 20px;
+}
+
+.fa-30 {
+  font-size: 30px;
+}
+
+.fa-40 {
+  font-size: 40px;
+}
+
+.fa-50 {
+  font-size: 50px;
+}
+
+.btn-floating-close,
+.btn-floating-close:hover {
+  position: absolute;
+  right: 0px;
+  color: red;
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 100%;
+  display: none;
+  transition: display 0.5s;
+}
+
+.parent-container:hover .btn-floating-close {
+  display: block;
+}
+
+
+.is-invalid{
+  border: 1px solid #dc3545 !important;
+}
+
+.custom-control-label::before{
+  left: -1.3rem;
+  border: 1.2px solid var(--theme-color);
+}
+.custom-control-label::after{
+  left: -1.3rem;
+}
+
+//common end
+
+//dashboard
+
+//dashboard
+
+
+// navbar
+
+.navbar-brand-img {
+  height: 40px;
+  width: 40px;
+  margin: -15px 0px -12px 0px;
+  border-radius: 100%;
+}
+
+.border-2 {
+  border: 2px solid !important;
+}
+
+//navbar end
+
+//modal
+
+.modal-backdrop {
+  background-color: transparent;
+}
+
+// SIDEBAR STYLE
+
+#sidebar {
+  width: 250px;
+  position: fixed;
+  top: 0px;
+  right: 0;
+  height: 100%;
+  z-index: 99;
+  color: #fff;
+  transition: all 0.3s;
+  overflow-y: auto;
+  // padding-top: 45px !important;
+  margin-right: -250px;
+}
+
+#sidebar .navbar-toggler {
+  margin: 5px 10px;
+}
+
+#sidebar.active {
+  margin-right: 0px;
+}
+
+.navbar-dark .navbar-nav .nav-item .nav-link {
+  padding: 8px 15px;
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-item .nav-link:hover,
+.navbar-dark .navbar-nav .nav-item .nav-link:focus,
+.navbar-dark .navbar-nav .nav-item .nav-link:active,
+.navbar-dark .navbar-nav .nav-item .nav-link.active {
+  background-color: var(--theme-color);
+  color: #fff;
+}
+
+#sidebar .profile_image img {
+  width: 100px;
+  border-radius: 100%;
+  border: 4px solid transparent;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: #fff;
+  cursor: pointer;
+}
+
+#sidebar .profile_image img:hover {
+  border: 4px solid #fff;
+  border-radius: 10%;
+}
+
+// #contentSection{
+//     width: 100%;
+// }
+#contentSection {
+  width: 100%;
+  // min-height: 100%;
+  transition: all 0.3s;
+  // position: absolute;
+  // top: 44px;
+  // left: 0;
+  // min-height: calc(100vh - 44px);
+}
+
+#contentSection.active {
+  width: calc(100% - 250px);
+}
+
+.login-module #contentSection.active {
+  width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-item .dropdown-list .nav-link {
+  font-size: 90%;
+  padding: 5px 15px;
+  padding-left: 30px;
+}
+
+.tooltip-inner {
+  padding: 4px;
+  max-width: 400px;
+}
+
+@media (max-width: 992px) {
+  body{
+    // padding-bottom: 68px;
+  }
+  .tooltip-inner {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.875rem !important;
+  }
+
+  h3,
+  .h3 {
+    font-size: 1.25rem !important;
+  }
+
+  h5,
+  .h5 {
+    font-size: 1rem !important;
+  }
+
+  //----
+  .navbar-brand {
+    font-size: 1rem !important;
+  }
+
+  .navbar-brand-img {
+    height: 35px !important;
+    width: 35px !important;
+  }
+
+  //---
+
+  #sidebar {
+    width: 210px !important;
+    margin-right: -250px;
+  }
+
+  #sidebar.active {
+    margin-right: 0px;
+  }
+
+  #contentSection,
+  #contentSection.active {
+    width: 100%;
+    top: 38px;
+  }
+.input-group-form-inside .custom-file .input-group-append-inner
+  #sidebar .profile_image img {
+    width: 100px !important;
+  }
+
+  .navbar-dark .navbar-nav .nav-item .nav-link {
+    padding: 6px 15px !important;
+  }
+}
+
+@media (max-width: 482px) {
+  #sidebar {
+    width: 200px !important;
+  }
+}
+
+app-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color:var(--theme-color);
+  color: #fff;
+}
+
+footer a,
+footer a:hover,
+.footer a:focus {
+  color: #fff;
+}
+
+// froala editor
+.fr-box{
+  display: none;
+}
+.fr-toolbar .fr-separator.fr-hs{
+  display: none;
+}
+.fr-wrapper div:first-child{
+  display: none;
+}
+.fr-box.fr-basic .fr-element{
+  min-height: 100px;
+}
+
+.ngx-editor .ngx-wrapper .ngx-editor-textarea{
+  min-height: 10rem !important;
+}
+
+.ngx-editor .ngx-wrapper{
+  background-color: #ffffff !important;
+}
+
+.cropper{
+  outline: rgba(255, 255, 255, 0.4) solid 100vw !important;
+}
+
+.login-page{
+  background: url(http://christkinginstitution.com/assets/images/bg-login.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}

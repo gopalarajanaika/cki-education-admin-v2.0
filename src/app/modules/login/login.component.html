@@ -1,0 +1,79 @@
+<div class="login-module">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin shadow-lg">
+          <div class="card-body mt-5">
+            <div class="text-center mb-4"><img src="assets/images/logo.png" class="img-fluid shadow-lg"></div>
+
+            <h4 class="card-title text-center mt-4">Sign In</h4>
+            <form class="floating-label-form input-group-form-inside input-group-form-inside-both pb-4" name="ngForm"
+              #myNgForm="ngForm" (ngSubmit)="login()" novalidate>
+
+              <div class="form-group">
+                <label class="ml-2" [ngClass]="{'visible':ngFormData?.username}">Username <span
+                    class="text-danger">*</span></label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="btn"><i class="fa fa-user fa-20 text-primary"></i>
+                    </span>
+                  </div>
+                  <input type="text" id="username" class="form-control shadow-sm" placeholder="Username"
+                    [ngClass]="{'is-invalid':((myNgForm?.submitted && myNgForm?.invalid) || (myNgForm?.dirty && myNgForm?.invalid))}"
+                    name="username" [(ngModel)]="ngFormData.username" #username="ngModel" required email>
+                  <div class="input-group-append">
+                    <span class="btn" *ngIf="ngFormData.username" (click)="ngFormData.username=''"><i
+                        class="fa fa-times"></i>
+                    </span>
+                  </div>
+                </div>
+                <div *ngIf="((myNgForm?.submitted && myNgForm?.invalid) || (myNgForm?.dirty && myNgForm?.invalid))"
+                  class="invalid-feedback ml-2">
+                  <span *ngIf="myNgForm?.errors?.required">Email is required</span>
+                  <span *ngIf="myNgForm?.errors?.email">Invalid Username</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="ml-2" [ngClass]="{'visible':ngFormData?.password}">Password <span
+                    class="text-danger">*</span></label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="btn"><i class="fa fa-lock fa-20 text-primary"></i>
+                    </span>
+                  </div>
+                  <input [type]="showHidePasswordFlag ? 'text' : 'password'" id="password" class="form-control shadow-sm" placeholder="password"
+                    [ngClass]="{'is-invalid':((myNgForm?.submitted && password.invalid) || (password.dirty && password.invalid))}"
+                    name="password" [(ngModel)]="ngFormData.password" #password="ngModel" required>
+                  <div class="input-group-append">
+                    <span class="btn" *ngIf="ngFormData.password" (click)="ngFormData.password=''"><i
+                        class="fa fa-times"></i></span>
+                  </div>
+                </div>
+                <div class="custom-control custom-checkbox m-3">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="showHidePasswordFlag"
+                      [(ngModel)]="showHidePasswordFlag">
+                    <label class="custom-control-label cursor-pointer" title="Show password" for="customCheck1">Show password</label>
+                  </div>
+                <div *ngIf="((myNgForm?.submitted && password.invalid) || (password.dirty && password.invalid))"
+                  class="invalid-feedback ml-2">Password is required</div>
+                <div *ngIf="capslockOn" class="invalid-feedback ml-2"><i class="fa fa-warning-circle"></i> Caps lock is
+                  On</div>
+              </div>
+
+              <div class="form-group mt-4">
+                <button class="btn btn-lg btn-primary btn-block text-uppercase shadow" type="submit">Sign in</button>
+              </div>
+              <div class="http-message mt-2 text-center">
+                <div>
+                  <a routerLink="/reset-password/registered-email">Forgot password?</a>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

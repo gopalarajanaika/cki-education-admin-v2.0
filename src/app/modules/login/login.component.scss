@@ -1,0 +1,85 @@
+.login-module{
+    background: url(http://christkinginstitution.com/assets/images/bg-login.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: all 0.3s;
+  }
+
+.login-module{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.card {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgb(255, 255, 255);
+}
+.card-signin img{
+    margin: auto;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+.card-signin .form-control  {
+    height: auto;
+    border-radius: 2rem;
+    padding: 0.8rem 40px;
+}
+.card-signin .btn{
+    height: auto;
+    border-radius: 2rem;
+    padding: 0.86rem 1.3rem;
+}    
+.input-group-form-inside .input-group-append{
+    right: 0px !important;
+}
+.input-group-form-inside .input-group-append .btn:hover{
+    background-color: rgba(255, 0, 0, 0.2) !important;
+}
+.invalid-feedback{
+    font-size: 100%;
+}
+.custom-control-label::before{
+    top: 0.2rem;
+}
+
+
+@media (max-width: 768px) {
+    .container{
+        padding: 0;
+    }
+    .container .row{
+        margin: 0;
+    }
+    .container .row > div{
+        padding: 0;
+    }
+    .card {
+        border-radius: 0px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border: none;
+    }
+    .card-signin img {
+        width: 80px;
+        height: 80px;
+        top: -30px;
+        left: calc(50% - 40px);
+    }
+    .card-signin .form-control {
+        padding: 0.5rem 40px;
+    }
+    .card-signin .btn {
+        padding: 0.7rem 1.3rem;
+    }
+
+    .card-signin button[type='submit'].btn {
+        padding: 0.5rem 1.3rem;
+        font-size: inherit;
+    }
+  }
